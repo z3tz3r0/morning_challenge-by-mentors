@@ -4,14 +4,30 @@ class ScoreServer {
     static allScore = [];
 
     static get topThreeScore() {
-        const sortedScores = [...ScoreServer.allScore].sort((a, b) => b - a);
-        return sortedScores.slice(0,3);
+        // const sortedScores = [...ScoreServer.allScore].sort((a, b) => b - a);
+        let sortedScores = ScoreServer.allScore;
+        let n = sortedScores.length;
+
+        for (let i = 0; i < n-1; i++) {
+            for (let j = 0; j < n-i-1 ; j++) {
+                if (sortedScores[j] < sortedScores[j + 1]) {
+                    [sortedScores[j], sortedScores[j + 1]] = [sortedScores[j + 1], sortedScores[j]];
+                }
+            }
+        }
+        // return sortedScores.slice(0,3);
+        return [sortedScores[0],(sortedScores[1]||""),(sortedScores[2]||"")];
     }
 
     static get averageScores() {
         const scores = ScoreServer.allScore;
         if (scores.length === 0) return 0;
-        return (scores.reduce((acc,curr) => acc + curr, 0) / scores.length).toFixed(0);
+        let sum = 0
+        for (const score of scores) {
+            sum += score;
+        }
+        return (sum / scores.length).toFixed(0);
+        // return (scores.reduce((acc,curr) => acc + curr, 0)/scores.length).toFixed(0);
     }
 }
 
