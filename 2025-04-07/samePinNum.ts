@@ -49,13 +49,6 @@ function samePinNum(input: string): boolean {
 
             // ถ้าตัวเลขแค่ไม่เท่ากันเฉย ๆ กลับบ้านไป
             return false;
-
-            // เราเช็คต่ออีก ถ้าฝั่งซ้ายเป็นเลข 6 หรือ 9 แบบเดียวกับฝั่งขวา ก็ให้กลับบ้านไป
-        } else if (
-            (input[leftIdx] === "6" && input[rightIdx] === "6") ||
-            (input[leftIdx] === "9" && input[rightIdx] === "9")
-        ) {
-            return false;
         }
         // จากด้านบน ถ้าตัวเลขสองฝั่งเท่ากัน (0 1 2 5 8) ก็ให้ขยับเลข ไปเช็คตัวถัดไป (ขยับเข้าตรงกลาง)
         leftIdx++;
@@ -65,10 +58,6 @@ function samePinNum(input: string): boolean {
     // ถ้าออกจาก while loop มาได้ แปลว่าฝั่งซ้ายฝั่งขวาอ่านกลับหัวได้หมด เพราะงั้นให้ return true
     return true;
 }
-
-const nums = "115505521";
-
-console.log(samePinNum(nums)); // true
 
 function samePinNum2(input: string): boolean {
     const inputLength = input.length;
@@ -107,6 +96,46 @@ function samePinNum2(input: string): boolean {
     return true;
 }
 
-const nums2 = "11011";
+function samePinNum3(input: string): boolean {
+    // ทดความยาวไว้กับตัวแปรชื่อ inputLength
+    let inputLength: number = input.length;
 
-console.log(samePinNum(nums2));
+    // ถ้าความยาวเป็น 0 ให้ return false (เหมือนหยิบกระดาษเปล่ามา)
+    if (inputLength === 0) return false;
+
+    // ถ้าความยาว มากกว่าหรือเท่ากับ 1 แล้วเริ่มด้วย 0 ให้ return false
+    if (inputLength > 1 && input[0] === "0") return false;
+
+    // ประกาศ set ใหม่ เก็บเลขที่กลับหัวยังไงก็อ่านไม่ได้ (มีเลข 3 4 และ 7) เพื่อเอามาเช็ค ว่าแต่ละเลขมันอ่านกลับหัวได้เท่านั้น
+    const inValidAmbigramNum: Set<string> = new Set(["3", "4", "7"]);
+
+    // loop ตามความยาว ถ้ามีตัวเลขที่อ่านกลับหัวไม่ได้ ให้ return false ไปเลย
+    for (let i = 0; i < inputLength; i++) {
+        if (inValidAmbigramNum.has(input[i])) {
+            return false;
+        }
+    }
+
+    // ถ้าออกจาก loop มาได้ แปลว่าตัวเลขทุกตัวอ่านกลับหัวได้หมด เพราะงั้นให้ return true
+    return true;
+}
+
+const nums = "1155055231";
+
+console.log(samePinNum3(nums)); // false (contained 3)
+
+const nums2 = "110112";
+
+console.log(samePinNum3(nums2)); // true
+
+const nums3 = "8669";
+
+console.log(samePinNum3(nums3)); // true
+
+const nums4 = "999";
+
+console.log(samePinNum3(nums4)); // true
+
+const nums5 = "9979";
+
+console.log(samePinNum3(nums5)); // false (contained 4)
