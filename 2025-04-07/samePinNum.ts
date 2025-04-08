@@ -109,11 +109,45 @@ function samePinNum3(input: string): boolean {
     // ประกาศ set ใหม่ เก็บเลขที่กลับหัวยังไงก็อ่านไม่ได้ (มีเลข 3 4 และ 7) เพื่อเอามาเช็ค ว่าแต่ละเลขมันอ่านกลับหัวได้เท่านั้น
     const inValidAmbigramNum: Set<string> = new Set(["3", "4", "7"]);
 
+    let currentStartIndex = 0;
+    let currentLastIndex = inputLength - 1;
+
     // loop ตามความยาว ถ้ามีตัวเลขที่อ่านกลับหัวไม่ได้ ให้ return false ไปเลย
-    for (let i = 0; i < inputLength; i++) {
-        if (inValidAmbigramNum.has(input[i])) {
+    while (currentStartIndex < currentLastIndex) {
+        console.log(input[currentStartIndex], input[currentLastIndex]);
+        if (
+            inValidAmbigramNum.has(input[currentStartIndex]) ||
+            inValidAmbigramNum.has(input[currentLastIndex])
+        ) {
             return false;
         }
+
+        if (input[currentStartIndex] === input[currentLastIndex]) {
+            if (
+                (input[currentStartIndex] === "6" &&
+                    input[currentLastIndex] === "6") ||
+                (input[currentStartIndex] === "9" &&
+                    input[currentLastIndex] === "9")
+            )
+                return false;
+        }
+
+        if (input[currentStartIndex] !== input[currentLastIndex]) {
+            if (
+                (input[currentStartIndex] === "6" &&
+                    input[currentLastIndex] === "9") ||
+                (input[currentStartIndex] === "9" &&
+                    input[currentLastIndex] === "6")
+            ) {
+                currentStartIndex++;
+                currentLastIndex--;
+                continue;
+            }
+
+            return false;
+        }
+        currentStartIndex++;
+        currentLastIndex--;
     }
 
     // ถ้าออกจาก loop มาได้ แปลว่าตัวเลขทุกตัวอ่านกลับหัวได้หมด เพราะงั้นให้ return true
@@ -122,20 +156,20 @@ function samePinNum3(input: string): boolean {
 
 const nums = "1155055231";
 
-console.log(samePinNum3(nums)); // false (contained 3)
+console.log(samePinNum2(nums)); // false (contained 3)
 
 const nums2 = "110112";
 
-console.log(samePinNum3(nums2)); // true
+console.log(samePinNum2(nums2)); // true
 
 const nums3 = "8669";
 
-console.log(samePinNum3(nums3)); // true
+console.log(samePinNum2(nums3)); // true
 
 const nums4 = "999";
 
-console.log(samePinNum3(nums4)); // true
+console.log(samePinNum2(nums4)); // true
 
-const nums5 = "9979";
+const nums5 = "609";
 
-console.log(samePinNum3(nums5)); // false (contained 4)
+console.log(samePinNum2(nums5)); // false (contained 4)
