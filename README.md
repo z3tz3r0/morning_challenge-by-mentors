@@ -4,7 +4,7 @@ This repository contains my personal solutions and learning journey through the 
 
 ## About These Challenges
 
--   **Source:** Provided daily by Mentor Mart.
+-   **Source:** Provided daily by Mentor Mart && Mentor Tod from Generation Thailand.
 -   **Goal:** To practice programming logic, problem-solving skills, and JavaScript fundamentals, often simulating concepts encountered in technical interviews.
 -   **Format:** Typically 1-2 problems per day, requiring self-designed Input/Output.
 -   **Constraint:** Solutions are implemented purely in **JavaScript** (Vanilla JS) without HTML or external libraries, unless specified otherwise by the challenge.
