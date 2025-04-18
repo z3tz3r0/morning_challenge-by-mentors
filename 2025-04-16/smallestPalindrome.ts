@@ -16,7 +16,8 @@ function smallestPalindrome(str: string): string {
     const firstHalf: string[] = [];
     let middleChar: string = "";
 
-    const sortedChar = Object.keys(map).sort();
+    // const sortedChar: string[] = Object.keys(map).sort();
+    const sortedChar: string = "abcdefghijklmnopqrstuvwxyz";
 
     for (const char of sortedChar) {
         const count = map[char];
