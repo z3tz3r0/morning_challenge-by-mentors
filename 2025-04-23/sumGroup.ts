@@ -4,6 +4,7 @@ function sumDigits(num: number): number {
   while (currentNum > 0) {
     sum += currentNum % 10;
     currentNum = Math.floor(currentNum / 10);
+    // currentNum = (currentNum / 10) | 0; เขียนแบบนี้เพื่อตัดทศนิยมทิ้ง
   }
   return sum;
 }
