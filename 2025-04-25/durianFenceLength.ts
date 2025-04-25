@@ -1,17 +1,19 @@
-const fenceLengthPerTree: number = 40;
+const FENCE_LENGTH_PER_UNIT: number = 40;
 
 function durianFenceLength(area: string[][]): number {
-  let maxY = area.length - 1;
+  const maxY = area.length;
 
-  if (maxY < 0) return 0;
+  if (maxY === 0) return 0;
 
   let xLength = 0;
   let yLength = 0;
 
-  for (let y = 0; y < area.length; y++) {
+  for (let y = 0; y < maxY; y++) {
     let checkingX: number = 0;
     let yExisted: boolean = false;
-    for (let x = 0; x < area[y].length; x++) {
+    const maxX = area[y].length;
+
+    for (let x = 0; x < maxX; x++) {
       if (area[y][x] === "1") {
         checkingX = x + 1;
         yExisted = true;
@@ -27,7 +29,7 @@ function durianFenceLength(area: string[][]): number {
     }
   }
 
-  return (xLength * 2 + yLength * 2) * fenceLengthPerTree;
+  return (xLength * 2 + yLength * 2) * FENCE_LENGTH_PER_UNIT;
 }
 
 const durianArea = [
