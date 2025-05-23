@@ -3,3 +3,5 @@
 ---
 
 ## ATM
+
+## Find next and previous prime from given number
