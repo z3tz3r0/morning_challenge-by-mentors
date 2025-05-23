@@ -15,13 +15,13 @@ function durianFenceLength(area: string[][]): number {
 
     for (let x = 0; x < maxX; x++) {
       if (area[y][x] === "1") {
-        checkingX = x + 1;
+        checkingX = x;
         yExisted = true;
       }
     }
 
     if (xLength < checkingX) {
-      xLength = checkingX;
+      xLength = checkingX + 1;
     }
 
     if (yExisted) {
