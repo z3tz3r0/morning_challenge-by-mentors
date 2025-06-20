@@ -17,3 +17,9 @@ Input: "Programming is fun!"
 Output: 'r' (r, o, g, m, i, n แต่ r มาก่อน)
 Input: "abacaba"
 Output: 'a'
+
+---
+
+## แสดงค่าจำนวนเต็มที่มากที่สุด
+
+กำหนดให้ $number = array(1,2,31,4,15,6,7,22,9,10);
